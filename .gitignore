@@ -1,3 +1,8 @@
+# local working files: never published
+CLAUDE.md
+CLAUDE.local.md
+private/
+.claude/settings.local.json
 .idea/
 __pycache__/
 *.pyc
