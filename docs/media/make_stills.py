@@ -25,7 +25,14 @@ def main(src):
     grid = Image.open(os.path.join(src, "STEP vs GH2 rebuild.png")).convert("RGB")   # 2200x1608, 2x2
     w, h = grid.size
     top = grid.crop((0, 0, w, h // 2))
-    top.save(os.path.join(HERE, "step-vs-gh2.png"), optimize=True)
+    # the source titles overlap Rhino's small "top-iso" viewport labels: cut below both and redraw the titles
+    cut, band = 48, 56
+    still = Image.new("RGB", (w, h // 2 - cut + band), (255, 255, 255))
+    still.paste(top.crop((0, cut, w, h // 2)), (0, band))
+    d = ImageDraw.Draw(still)
+    for x, text in ((14, "STEP (NIST FTC-08)"), (w // 2 + 14, "GH2 rebuild (parametric)")):
+        d.text((x, 10), text, font=font(30, True), fill=(20, 20, 20))
+    still.save(os.path.join(HERE, "step-vs-gh2.png"), optimize=True)
 
     canvas = Image.open(os.path.join(src, "canvas_overview.png")).convert("RGB")      # 1800x2895
     canvas.crop((0, 0, canvas.width, 1300)).save(os.path.join(HERE, "gh2-canvas.png"), optimize=True)
