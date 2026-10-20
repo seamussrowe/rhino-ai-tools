@@ -1,6 +1,7 @@
 # local working files: never published
 CLAUDE.md
 CLAUDE.local.md
+PLAN.md
 private/
 .claude/settings.local.json
 .idea/
