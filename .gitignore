@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+*.pyc
+packets/
+FeatureContext packets/
+fc_config.json
+*.3dm
+*.3dmbak
+*.stp
+*.step
+docs/media/frames/
